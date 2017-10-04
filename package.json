@@ -1,0 +1,19 @@
+{
+  "name": "dothatthing",
+  "version": "0.0.1",
+  "description": "Just a todolist.",
+  "main": "dothatthing.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "todo",
+    "todolist",
+    "dothatthing",
+    "do that thing"
+  ],
+  "author": "Rémi ARNAUD",
+  "license": "ISC",
+  "dependencies": {
+  }
+}

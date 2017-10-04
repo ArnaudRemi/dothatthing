@@ -1,0 +1,16 @@
+{
+  "manifest_version": 2,
+  "name": "Do That Thing",
+  // "short_name":"dothatthing",
+  // "description": "Just a todo list.",
+  "version": "0.0.1",
+
+  "chrome_url_overrides": {
+    "newtab": "dothatthing.html"
+  }
+
+  // "web_accessible_resources": [
+  //   "imgs/Logo/*.png",
+  //   "imgs/Logo/*.gif"
+  // ]
+}
