@@ -30,7 +30,7 @@ App.task_manager = {
   },
 
   add_list_item: function(btn) {
-    var new_list = App.task_manager.create_list_item('New Todo List');
+    var new_list = App.task_manager.create_list_item('New List');
     new_list.insertBefore($(btn));
     // save
     new_list.find('.add-item-btn').click(function(){
