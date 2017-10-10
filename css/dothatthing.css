@@ -25,6 +25,8 @@ body {
 .add-item-btn {
   display:inline-block;
   cursor: pointer;
+  font-weight: 700;
+  color: #00B8FF;
 }
 
 .item {
