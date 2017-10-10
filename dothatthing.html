@@ -8,7 +8,7 @@
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
 
     <link href="css/dothatthing.css" rel="stylesheet">
     <script src="js/dothatthing.js"></script>
@@ -16,6 +16,7 @@
   </head>
   <body>
 
+  
   <div id="center">
     <div id="today">Thursday, Septembre 19th</div>
     
@@ -23,21 +24,26 @@
       <div class="title">Title</div>
 
       <div class="item">
-        <label class="form-check-label">
-          <input class="form-check-input" type="checkbox" id="todo1" value="option1"> Créer une tache
-        </label>
+        <input class="checkbox-task" type="checkbox" id="todo-1" value="option1"> 
+        <input class="text-task" type="text" id="text-task-1" value="Créer une tache">
       </div>
       <div class="item">
-        <label class="form-check-label">
-          <input class="form-check-input" type="checkbox" id="todo1" value="option1"> Terminer un tache
-        </label>
+        <input class="checkbox-task" type="checkbox" id="todo-2" value="option1">
+        <input class="text-task" type="text" id="text-task-1" value="Terminer un tache">
       </div>
 
-      <div class="add-item"><span class="add-button">+</span> Add a task</div>
+      <div class="add-item-btn"><span class="add-icon">+</span> Add a task</div>
+    </div>
+
+    
+
+    <div class="add-list-btn">
+      Add List
     </div>
   </div>
 
-  <div>
+
+  <div id="send-emails">
     Send 3 mails
   </div>
   

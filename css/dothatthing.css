@@ -1,7 +1,60 @@
+body {
+  display: flex;
+  height: 100%;
+  flex-wrap: wrap;
+  flex-flow: flex-direction;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.title {
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+.add-item-btn {
+  display:inline-block;
+  cursor: pointer;
+}
+
+.item {
+  margin: 10px 0;
+}
+
+.text-task {
+  margin-left: 10px; 
+  background: transparent;
+  border: none;
+}
+
+.text-task:focus {
+  outline: none;
+}
+
+.add-list-btn {
+  margin-top: 20px;
+  float: left;
+  color: white;
+}
+
+.add-list-btn:hover {
+  color: black;
+}
+
+#center {
+  
+}
+
 #today {
 
 }
 
 .list {
-  
+
+}
+
+.form-check-input {
+  margin-top:10px;
+  margin-right: 10px;
 }
