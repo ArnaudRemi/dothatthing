@@ -11,6 +11,7 @@ body {
   color: #595E63;
   -webkit-font-smoothing: antialiased;
 }
+
 #today {
   margin-top: 72px;
   margin-bottom: 36px;
@@ -18,8 +19,15 @@ body {
 }
 
 .title {
+  width: 100%;
   margin-bottom: 24px;
   font-size: 20px;
+  background: transparent;
+  border: none;
+}
+
+.title:focus {
+  outline: none;
 }
 
 .add-item-btn {
@@ -32,6 +40,7 @@ body {
 }
 
 .text-task {
+  width: 80%;
   margin-left: 24px;
   background: transparent;
   border: none;

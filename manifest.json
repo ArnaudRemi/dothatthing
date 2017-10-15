@@ -11,7 +11,7 @@
 
   "permissions": [
     "storage"
-  ],
+  ]
 
   // "web_accessible_resources": [
   //   "imgs/Logo/*.png",
