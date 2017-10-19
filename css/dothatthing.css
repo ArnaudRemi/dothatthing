@@ -1,6 +1,9 @@
+html {
+  height: 100%;
+}
 body {
   display: flex;
-  height: 100%;
+  min-height: 100%;
   flex-wrap: wrap;
   flex-flow: flex-direction;
   justify-content: center;
@@ -51,6 +54,10 @@ body {
   color: #595E63;
 }
 
+.strikeout{
+  text-decoration: line-through;
+}
+
 .text-task:focus {
   outline: none;
   color: #28292A;
@@ -84,6 +91,9 @@ body {
   border: 2px solid #a9a9a9
 }
 
-
+#spread-feature {
+  margin-top: auto;
+  margin-bottom: 50px;
+}
 
 

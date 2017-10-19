@@ -1,7 +1,6 @@
 ////
 
 var App = App || {}
-App.todolists = App.todolists || {}
 
 /// EXAMPLE
 /// App.todolists =
@@ -22,6 +21,8 @@ App.todolists = App.todolists || {}
 App.task_manager = {
   init: function() {
     var self = this;
+
+    $('#today').html( moment().format("dddd, MMMM Do") );
 
     chrome.storage.local.get('todolists', function(result) {
       App.todolists = result.todolists || App.task_manager.init_todolists();
@@ -74,10 +75,31 @@ App.task_manager = {
 
   save_item_value: function(item) {
     var id = this.get_item_id(item);
-    var value = item.val();
+    var value = item.closest('.item').find('.text-task').val();
     var list_id = this.get_item_id(item.closest('.list'));
+    var items = _.filter(App.todolists, {id: list_id})[0].items
 
-    _.filter( _.filter(App.todolists, {id: list_id})[0].items, {id: id} )[0].value = value;
+    if ( _.some(items, {id: id}) ){
+      _.filter(items, {id: id} )[0].value = value;
+    }
+  },
+
+  delete_item: function(ckbitem) {
+    var id = this.get_item_id(ckbitem);
+    var text_item = ckbitem.closest('.item').find('.text-task');
+    var list_id = this.get_item_id(ckbitem.closest('.list'));
+    var items = _.filter(App.todolists, {id: list_id})[0].items
+
+    if (_.some(items, {id: id})) {
+      _.remove( items, {id: id} );
+      text_item.addClass('strikeout');
+      text_item.prop('disabled', true);
+    }
+    else {
+      items.push({id: id, value: text_item.val()});
+      text_item.removeClass('strikeout');
+      text_item.prop('disabled', false);
+    }
   },
 
   save_list_title: function(list) {
@@ -120,6 +142,11 @@ App.task_manager = {
 
     $(new_item).find('.text-task').change(function (){
       self.save_item_value($(this));
+      self.save_todolists();
+    });
+
+    $(new_item).find('.checkbox-task').change(function (){
+      self.delete_item($(this));
       self.save_todolists();
     });
   },
