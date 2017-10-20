@@ -10,7 +10,7 @@ var App = App || {}
 ///     title: 'What I have To Do',
 ///     items: [{
 ///       id: 'autogenerateitemid',
-///       value: 'Ohe thing i have to do'
+///       value: 'One thing i have to do'
 ///       },
 //        {...}
 ///     ]
@@ -184,7 +184,7 @@ App.task_manager = {
   create_list_item: function(title, id) {
     return $('<div class="list" id="todo-list-' + id + '">' +
         '<input class="title" type="text" id="todo-list-text-' + id + '" value="' + title + '" placeholder="Add a list">' +
-        '<div class="add-item-btn" id="todo-list-btn-' + id + '"><span class="add-icon">+</span> Add a task</div>' +
+        '<div class="add-item-btn" id="todo-list-btn-' + id + '">Add a task</div>' +
       '</div>');
   }
 
