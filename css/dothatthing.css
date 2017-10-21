@@ -1,5 +1,7 @@
 html {
   height: 100%;
+  padding-left: 10%;
+  padding-right: 10%;
 }
 
 body {
@@ -49,7 +51,8 @@ input {
   font-weight: 700;
   color: #595E63;
   opacity: 0.5;
-  margin-left: 40px;
+  margin-left: 34px;
+  cursor: text;
 }
 
 ::-webkit-input-placeholder {
@@ -58,14 +61,19 @@ input {
   letter-spacing: 0.5px;
 }
 
+::selection { 
+  background: #E7EEF9;
+  color: #185AC8;
+}
+
 
 .item {
   margin-bottom: 14px;
 }
 
 .text-task {
-  width: 700px;
-  margin-left: 24px;
+  width: 600px;
+  margin-left: 18px;
   background: transparent;
   border: none;
   font-weight: 600;
@@ -74,7 +82,7 @@ input {
   letter-spacing: 0.5px;
   color: #595E63;
   padding-bottom: 4px;
-  border-bottom: 1px solid #FFFFFF;
+  border-bottom: 1px solid rgba(255, 255, 255, 0);
 }
 
 .strikeout{
@@ -113,9 +121,28 @@ input {
   margin-right: 10px;
 }
 
-.checkbox-task {
-  border: 2px solid #a9a9a9
-}
+
+/*.checkbox-task {
+  position: absolute;
+  opacity: 0;
+
+  & + label {
+    position: relative;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  & + label:before {
+    content: '';
+    margin-right: 10px;
+    display: inline-block;
+    vertical-align: text-top;
+    width: 20px;
+    height: 20px;
+    background: red;
+
+  }
+}*/
 
 #spread-feature {
   margin-top: auto;
