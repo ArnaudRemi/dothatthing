@@ -8,9 +8,11 @@ var App = App || {}
 ///   {
 ///     id: 'autogenereatelistid',
 ///     title: 'What I have To Do',
+///     deleted_at: null,
 ///     items: [{
 ///       id: 'autogenerateitemid',
 ///       value: 'One thing i have to do'
+///       deleted_at: "2017-10-25T13:36:50+02:00"  /// (ISO 8601)
 ///       },
 //        {...}
 ///     ]
