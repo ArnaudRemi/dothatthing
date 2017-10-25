@@ -120,7 +120,7 @@ App.task_manager = {
     var value = item.val();
     var list_id = this.get_item_id(item.closest('.list'));
 
-    _.filter(App.todolists, {id: list_id})[0].items.push({id: id, value: value})
+    _.filter(App.todolists, {id: list_id})[0].items.push({id: id, value: value, created_at: moment()})
   },
 
   add_todo_item: function(btn) {
