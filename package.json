@@ -15,5 +15,6 @@
   "author": "Rémi ARNAUD",
   "license": "ISC",
   "dependencies": {
+    "vivus": "^0.4.2"
   }
 }

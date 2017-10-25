@@ -1,4 +1,6 @@
-////
+///
+/// Import
+///
 
 var App = App || {}
 
@@ -30,6 +32,19 @@ App.task_manager = {
       App.todolists = result.todolists || App.task_manager.init_todolists();
       App.task_manager.show_todolists();
     });
+
+    // synchronize tabs
+    // TODO: make it less shotguned
+    // chrome.storage.onChanged.addListener(function(changes, namespace) {
+    //   App.todolists = changes.todolists.newValue;
+    //   var reinit = '<div id="today"></div>' +
+    //                 '<div class="add-list-btn">' +
+    //                   'Add List'+
+    //                 '</div>';
+    //   $('#center').html(reinit);
+    //   $('#today').html( moment().format("dddd, MMMM Do") );
+    //   App.task_manager.show_todolists();
+    // });
 
     $('.add-list-btn').click(function(){
       App.task_manager.add_list_item(this);
@@ -113,13 +128,11 @@ App.task_manager = {
       deleted_item.deleted_at = null;
       text_item.removeClass('strikeout');
       text_item.prop('disabled', false);
-      console.log('not deleted')
     }
     else {
       deleted_item.deleted_at = moment().format();
       text_item.addClass('strikeout');
       text_item.prop('disabled', true);
-      console.log('deleted')
     }
 
     // if (_.some(items, {id: id})) {
@@ -154,6 +167,18 @@ App.task_manager = {
     $(new_item).find('.text-task').focus();
   },
 
+  animate_custom_ckb: function(ckb) {
+    var id = this.get_item_id(ckb);
+    var v = new Vivus('svg-ckb-' + id, {duration: 28, start: 'manual'});
+
+    if (ckb.is(':checked')) {
+      v.play()
+    }
+    else{
+      v.reset()
+    }
+  },
+
   init_item_interation: function(new_item) {
     var self = this;
 
@@ -163,6 +188,7 @@ App.task_manager = {
     });
 
     $(new_item).find('.checkbox-task').change(function (){
+      self.animate_custom_ckb($(this));
       self.delete_item($(this));
       self.save_todolists();
     });
@@ -171,6 +197,13 @@ App.task_manager = {
   create_todo_item: function(value, id) {
     return $('<div class="item">' +
         '<input class="checkbox-task" type="checkbox" id="todo-item-' + id + '" value="option1">' +
+        '<label for="todo-item-' + id + '" class="label-task-ckb">' +
+          '<svg class="svg-ckb" id="svg-ckb-' + id + '"  width="17px" height="17px" >' +
+            '<g transform="translate(-266.000000, -324.000000)">' +
+              '<path class="path-ckb" fill="none" stroke="#185AC8" stroke-width="2" class="path" d="M278,335 C278,335 270,338.403765 270,336 C270,333.596235 279.324527,329.927169 278,329 C276.675473,328.072831 268.850732,330.41561 267.5,330 C266.149268,329.58439 272.705125,325 272.705125,325"/>' +
+            '</g>' +
+          '</svg>' +
+          '</label>' +
         '<input class="text-task" type="text" id="todo-item-text-' + id + '" value="' + value + '" placeholder="Add a task">' +
       '</div>');
   },
