@@ -29,6 +29,7 @@ input {
   margin-bottom: 36px;
   font-size: 30px;
   line-height: 41px;
+  -webkit-user-select: none; 
 }
 
 .title {
@@ -62,8 +63,9 @@ input {
 }
 
 ::selection { 
-  background: #E7EEF9;
-  color: #185AC8;
+  background: #F4F4F4;
+  color: #292B2D;
+  text-shadow: 0 2px 5px rgba(0,0,0,0.20);
 }
 
 

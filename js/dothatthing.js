@@ -58,6 +58,11 @@ App.task_manager = {
 
       var add_item_btn = html_list.find('.add-item-btn').first();
       list.items.forEach(function(item) {
+
+        if (item.deleted_at) {
+          return;
+        }
+
         var html_item = self.create_todo_item(item.value, item.id);
         $(html_item).insertBefore(add_item_btn);
         self.init_item_interation(html_item);
@@ -102,17 +107,30 @@ App.task_manager = {
     var text_item = ckbitem.closest('.item').find('.text-task');
     var list_id = this.get_item_id(ckbitem.closest('.list'));
     var items = _.filter(App.todolists, {id: list_id})[0].items
+    var deleted_item = _.filter(items, {id: id})[0]
 
-    if (_.some(items, {id: id})) {
-      _.remove( items, {id: id} );
-      text_item.addClass('strikeout');
-      text_item.prop('disabled', true);
-    }
-    else {
-      items.push({id: id, value: text_item.val()});
+    if (deleted_item.deleted_at) {
+      deleted_item.deleted_at = null;
       text_item.removeClass('strikeout');
       text_item.prop('disabled', false);
+      console.log('not deleted')
     }
+    else {
+      deleted_item.deleted_at = moment().format();
+      text_item.addClass('strikeout');
+      text_item.prop('disabled', true);
+      console.log('deleted')
+    }
+
+    // if (_.some(items, {id: id})) {
+    //   _.remove( items, {id: id} );
+    //   text_item.addClass('strikeout');
+    //   text_item.prop('disabled', true);
+    // }
+    // else {
+    //   items.push({id: id, value: text_item.val()});
+    //   text_item.removeClass('strikeout');
+    //   text_item.prop('disabled', false);
   },
 
   push_new_item: function(item) {
