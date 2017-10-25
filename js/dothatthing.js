@@ -34,6 +34,7 @@ App.task_manager = {
     })
   },
 
+  // init base todolist when no datas are saved
   init_todolists: function() {
     return [{
       id: this.generate_random_id(),
@@ -45,6 +46,7 @@ App.task_manager = {
     }];
   },
 
+  // show saved or initialized todolists
   show_todolists: function() {
     var self = this;
     App.todolists.forEach(function(list) {
@@ -61,17 +63,26 @@ App.task_manager = {
     });
   },
 
-  generate_random_id: function() {
-    return _.times(10, () => _.random(35).toString(36)).join('');
-  },
-
-  get_item_id: function(html) {
-    return _.last($(html).attr('id').split('-'))
-  },
+  ///
+  /// UTILS
+  ///
 
   save_todolists: function() {
     chrome.storage.local.set({'todolists': App.todolists});
   },
+
+  generate_random_id: function() {
+    return _.times(10, () => _.random(35).toString(36)).join('');
+  },
+
+  // get the id of item or list
+  get_item_id: function(html) {
+    return _.last($(html).attr('id').split('-'))
+  },
+
+  ///
+  /// ITEMS
+  ///
 
   save_item_value: function(item) {
     var id = this.get_item_id(item);
@@ -102,26 +113,12 @@ App.task_manager = {
     }
   },
 
-  save_list_title: function(list) {
-    var id = this.get_item_id(list);
-    var title = list.val();
-
-    _.filter(App.todolists, {id: id})[0].title = title;
-  },
-
   push_new_item: function(item) {
     var id = this.get_item_id(item);
     var value = item.val();
     var list_id = this.get_item_id(item.closest('.list'));
 
     _.filter(App.todolists, {id: list_id})[0].items.push({id: id, value: value})
-  },
-
-  push_new_list: function(list) {
-    var id = this.get_item_id(list);
-    var title = list.val();
-
-    App.todolists.push({id: id, title: title, items: []})
   },
 
   add_todo_item: function(btn) {
@@ -137,7 +134,7 @@ App.task_manager = {
     $(new_item).find('.text-task').focus();
   },
 
-  init_item_interation: function(new_item){
+  init_item_interation: function(new_item) {
     var self = this;
 
     $(new_item).find('.text-task').change(function (){
@@ -156,6 +153,24 @@ App.task_manager = {
         '<input class="checkbox-task" type="checkbox" id="todo-item-' + id + '" value="option1">' +
         '<input class="text-task" type="text" id="todo-item-text-' + id + '" value="' + value + '" placeholder="Add a task">' +
       '</div>');
+  },
+
+  ///
+  /// LISTS
+  ///
+
+  push_new_list: function(list) {
+    var id = this.get_item_id(list);
+    var title = list.val();
+
+    App.todolists.push({id: id, title: title, items: []})
+  },
+
+  save_list_title: function(list) {
+    var id = this.get_item_id(list);
+    var title = list.val();
+
+    _.filter(App.todolists, {id: id})[0].title = title;
   },
 
   add_list_item: function(btn) {
