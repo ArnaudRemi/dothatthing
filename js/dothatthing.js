@@ -33,6 +33,9 @@ App.task_manager = {
       App.task_manager.show_todolists();
     });
 
+    // TODO
+    // Set an ID for the tab -> know which tab save datas
+
     // synchronize tabs
     // TODO: make it less shotguned
     // chrome.storage.onChanged.addListener(function(changes, namespace) {
@@ -90,6 +93,8 @@ App.task_manager = {
   ///
 
   save_todolists: function() {
+    // TODO
+    // set tab id into todolists
     chrome.storage.local.set({'todolists': App.todolists});
   },
 
