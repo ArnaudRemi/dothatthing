@@ -52,7 +52,7 @@ input {
   font-weight: 700;
   color: #595E63;
   opacity: 0.5;
-  margin-left: 34px;
+  margin-left: 42px;
   cursor: text;
 }
 
@@ -70,7 +70,7 @@ input {
 
 
 .item {
-  margin-bottom: 14px;
+  margin-bottom: 12px;
   display: flex;
   flex-direction: row;
 }
@@ -81,7 +81,7 @@ input {
   background: transparent;
   border: none;
   font-weight: 600;
-  font-size: 16px;
+  font-size: 15.5px;
   line-height: 22px;
   letter-spacing: 0.5px;
   color: #595E63;
