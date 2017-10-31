@@ -9,7 +9,7 @@ A Google Chrome extension that brings your todo to new tab page, with a sober de
 
 ## About the project
 
-DTT is born from a real problem I had with todos. Although I use Wonderlist and other very professionnal looking to apps, I always ended up with todos on the side of a paper sheet. The reason is that a todo list needs to be constantly monitored. Then I realised that I was using chrome extensions to customize my home page like Momentum, whic
+DTT is born from a real problem with todos. Although there are lots of very great todo apps, short term and daily todos always end up on the side of a paper sheet, a post it, or whatever's under your eyes frequently. The reason is that a todo needs to be constantly monitored. Using chrome extensions to replace home page of new tabs can be a very good alternative for this specific problem. That's why Do That Thing is borned!
 
 Why the name "Do That Thing"? Because of this https://youtu.be/WsqdmqRgrIc?t=54s
 
@@ -27,13 +27,15 @@ Always in Chrome extension manager, load the project folder you just unziped by 
 
 Done! Do That Thing Will open with your new tabs.
 
->Note! If you already installed extensions that takes place in Chrome homepage, you might have a conflict. Better desable all these extensions while using DTT.
+
+> Note! If you already installed extensions that takes place in Chrome homepage, you might have a conflict. Better disable all these extensions while using DTT.
 
 ## Roadmap
 
 - [x] ~~Todo opens in new tab page~~
-- [x] ~~list syntax required (any unordered or ordered list supported)~~
-- [x] ~~this is a complete item~~
-- [ ] this is an incomplete item
+- [x] ~~Create multiple lists~~
+- [x] ~~No procrastination features~~
+- [ ] Access your archives
+- [ ] Reorder tasks in a list
 
-We love feedbacks, don't hesitate to contact us via Tweeter 
+❤️ feedbacks, don't hesitate to reach out [@gregoiresgt](https://twitter.com/gregoiresgt)
