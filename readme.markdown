@@ -4,7 +4,7 @@
 
 A Google Chrome extension that brings your todo to new tab page, with a sober design, without added features.
 
-[![Aimeos TYPO3 demo](https://aimeos.org/fileadmin/user_upload/typo3-demo.jpg)](http://www.dothatthing.co/)
+[![Do That Thing screenshot](http://www.dothatthing.co/img/readme-github.png)](http://www.dothatthing.co/)
 
 
 ## About the project
