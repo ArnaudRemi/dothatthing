@@ -4,7 +4,7 @@
 
 A Google Chrome extension that brings your todo to new tab page, with a sober design, without added features.
 
-[![Do That Thing screenshot](http://www.dothatthing.co/img/readme-github.png)](http://www.dothatthing.co/)
+[![Do That Thing screenshot](http://www.dothatthing.co/img/readme.png)](http://www.dothatthing.co/)
 
 
 ## About the project
