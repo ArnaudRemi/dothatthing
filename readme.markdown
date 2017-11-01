@@ -25,7 +25,7 @@ Go to the extension manager (chrome://extensions/) and tick the box "Developer m
 #### 3. Load the unzip folder
 Always in Chrome extension manager, load the project folder you just unziped by clicking on "Load unpacked extension..." on the top left.
 
-Done! Do That Thing Will open with your new tabs.
+Done! Do That Thing will open with your new tabs.
 
 
 > Note! If you already installed extensions that takes place in Chrome homepage, you might have a conflict. Better disable all these extensions while using DTT.
