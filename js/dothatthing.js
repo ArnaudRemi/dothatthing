@@ -78,7 +78,12 @@ App.task_manager = {
   show_todolists: function() {
     var self = this;
     App.todolists.lists.forEach(function(list) {
-      var html_list = self.create_list_item(list.title, list.id);
+
+      if (list.deleted_at) {
+          return;
+        }
+
+      var html_list = self.create_list(list.title, list.id);
       $(html_list).insertBefore($('.add-list-btn').first());
       self.init_list_interaction(html_list);
 
@@ -243,7 +248,7 @@ App.task_manager = {
   add_list_item: function(btn) {
     var self = this;
     var id = self.generate_random_id();
-    var new_list = App.task_manager.create_list_item('New List', id);
+    var new_list = App.task_manager.create_list('New List', id);
     new_list.insertBefore($(btn));
     self.push_new_list($(new_list).find('.title'));
     self.save_todolists();
@@ -261,13 +266,60 @@ App.task_manager = {
     new_list.find('.add-item-btn').click(function(){
       App.task_manager.add_todo_item(this);
     });
+
+    new_list.find('.parent-settings').mouseenter(function(){
+      new_list.find('.list-settings').fadeIn({duration: 100})
+    })
+
+    new_list.find('.parent-settings').mouseleave(function(){
+      new_list.find('.list-settings').fadeOut({duration: 100})
+    })
+
+    new_list.find('.delete-btn').click(function(){
+     if (confirm('Are you sure you want to delete this list?')) {
+        self.delete_list(new_list)
+        self.save_todolists()
+     }
+    })
   },
 
-  create_list_item: function(title, id) {
+  delete_list: function(list) {
+    var id = this.get_item_id(list)
+    var deleted_list = _.filter(App.todolists.lists, {id: id})[0]
+    console.log(id)
+    console.log(deleted_list)
+
+    if (deleted_list.deleted_at) {
+      deleted_list.deleted_at = null;
+      console.log("FUUUUU")
+    }
+    else {
+      deleted_list.deleted_at = moment().format();
+      console.log("DELETED")
+    }
+
+    list.hide()
+  },
+
+  create_list: function(title, id) {
     return $('<div class="list" id="todo-list-' + id + '">' +
-        '<input class="title" type="text" id="todo-list-text-' + id + '" value="' + title + '" placeholder="Add a list">' +
-        '<div class="add-item-btn" id="todo-list-btn-' + id + '">Add a task</div>' +
-      '</div>');
+                 '<div class="parent-settings">' +
+                     '<div class="list-settings" id="list-settings-' + id + '">' +
+                        '<div class="setting-btn delete-btn">' +
+                        '<svg class="icon-delete" width="14px" height="14px">' +
+                          '<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">' +
+                          '<g id="Artboard-3" fill-rule="nonzero" fill="#444444"">' +
+                          '<path d="M14,1.75 L9.625,1.75 L8.75,0 L5.25,0 L4.375,1.75 L0,1.75 L0,4.375 L0.9625,4.375 L1.75,13.2125 C1.75,13.65 2.1875,14 2.625,14 L11.375,14 C11.8125,14 12.1625,13.65 12.25,13.2125 L13.0375,4.375 L14,4.375 L14,1.75 Z M10.5875,12.25 L3.4125,12.25 L2.7125,4.375 L11.2875,4.375 L10.5875,12.25 Z"></path>' +
+                          '</g>' +
+                          '</g>' +
+                        '</svg>' +
+                        '</div>' +
+                        '<div class="setting-btn archive-btn"></div>' +
+                      '</div>' +
+                      '<input class="title" type="text" id="todo-list-text-' + id + '" value="' + title + '" placeholder="Add a list">' +
+                    '</div>' +
+                 '<div class="add-item-btn" id="todo-list-btn-' + id + '">Add a task</div>' +
+             '</div>');
   }
 
 }

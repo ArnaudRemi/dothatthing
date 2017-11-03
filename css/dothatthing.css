@@ -117,6 +117,7 @@ input {
 }
 
 .list {
+  position: relative;
   margin-bottom: 36px;
 }
 
@@ -155,5 +156,33 @@ input {
   margin-bottom: 50px;
 }
 
+.list-settings {
+  display: none;
+  position: absolute;
+  transform: translateX(-100%);
+  top: 0px;
+  left: 0px;
+  padding-right: 7px;
+}
 
+.setting-btn {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #F1F1F1;
+  margin-right: 10px;
+}
+
+.delete-btn:hover {
+  background-color: #C4C4C4;
+}
+
+.archive-btn {
+  display: none;
+}
+
+.icon-delete {
+  transform-origin: 50% 50% 0px;
+}
 
