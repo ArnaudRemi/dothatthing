@@ -184,9 +184,11 @@ App.task_manager = {
     var v = new Vivus('svg-ckb-' + id, {duration: 28, start: 'manual'});
 
     if (ckb.is(':checked')) {
+      $('#todo-label-' + id).addClass('checked');
       v.play()
     }
     else{
+      $('#todo-label-' + id).removeClass('checked');
       v.reset()
     }
   },
@@ -209,10 +211,10 @@ App.task_manager = {
   create_todo_item: function(value, id) {
     return $('<div class="item">' +
         '<input class="checkbox-task" type="checkbox" id="todo-item-' + id + '" value="option1">' +
-        '<label for="todo-item-' + id + '" class="label-task-ckb">' +
+        '<label for="todo-item-' + id + '" class="label-task-ckb" id="todo-label-' + id + '">' +
           '<svg class="svg-ckb" id="svg-ckb-' + id + '"  width="17px" height="17px" >' +
-            '<g transform="translate(-266.000000, -324.000000)">' +
-              '<path class="path-ckb" fill="none" stroke="#185AC8" stroke-width="2" class="path" d="M278,335 C278,335 270,338.403765 270,336 C270,333.596235 279.324527,329.927169 278,329 C276.675473,328.072831 268.850732,330.41561 267.5,330 C266.149268,329.58439 272.705125,325 272.705125,325"/>' +
+            '<g transform="translate(-1.000000, -2.000000)">' +
+              '<path class="path-ckb" fill="none" stroke-linecap="round" stroke="white" stroke-width="2" class="path" d="M4,4.5 C4,4.5 8,2.5 9.5,3.5 C11,4.5 2.5962646,9.5962646 4,11 C5.4037354,12.4037354 13.4283027,7.64264214 14.5,8.5 C15.5716973,9.35735786 9,15 9,15"/>' +
             '</g>' +
           '</svg>' +
           '</label>' +

@@ -144,6 +144,11 @@ input {
   margin-bottom: 5px;
 }
 
+.label-task-ckb.checked{
+  border: 2px solid #185AC8;
+  background-color: #185AC8;
+}
+
 
 #spread-feature {
   margin-top: auto;
