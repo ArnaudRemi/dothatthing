@@ -5,26 +5,30 @@
 var App = App || {}
 
 /// EXAMPLE
-/// App.todolists =
-/// [
-///   {
-///     id: 'autogenereatelistid',
-///     title: 'What I have To Do',
-///     deleted_at: null,
-///     items: [{
-///       id: 'autogenerateitemid',
-///       value: 'One thing i have to do'
-///       deleted_at: "2017-10-25T13:36:50+02:00"  /// (ISO 8601)
-///       },
-//        {...}
-///     ]
-///   },
-///   {...}
-/// ]
+/// App.todolists = {
+///   last_updater: 'tabid',
+///   lists: [
+///     {
+///       id: 'autogenereatelistid',
+///       title: 'What I have To Do',
+///       deleted_at: null,
+///       items: [{
+///         id: 'autogenerateitemid',
+///         value: 'One thing i have to do'
+///         deleted_at: "2017-10-25T13:36:50+02:00"  // (ISO 8601)
+///         },
+///         {...}
+///       ]
+///     },
+///     {...}
+///   ]
+/// }
 
 App.task_manager = {
   init: function() {
     var self = this;
+
+    App.tab_id = App.task_manager.generate_random_id();
 
     $('#today').html( moment().format("dddd, MMMM Do") );
 
@@ -37,17 +41,19 @@ App.task_manager = {
     // Set an ID for the tab -> know which tab save datas
 
     // synchronize tabs
-    // TODO: make it less shotguned
-    // chrome.storage.onChanged.addListener(function(changes, namespace) {
-    //   App.todolists = changes.todolists.newValue;
-    //   var reinit = '<div id="today"></div>' +
-    //                 '<div class="add-list-btn">' +
-    //                   'Add List'+
-    //                 '</div>';
-    //   $('#center').html(reinit);
-    //   $('#today').html( moment().format("dddd, MMMM Do") );
-    //   App.task_manager.show_todolists();
-    // });
+    chrome.storage.onChanged.addListener(function(changes, namespace) {
+      if (changes.todolists.newValue.last_updater == App.tab_id)
+        return;
+
+      App.todolists = changes.todolists.newValue;
+      var reinit = '<div id="today"></div>' +
+                    '<div class="add-list-btn">' +
+                      'Add List'+
+                    '</div>';
+      $('#center').html(reinit);
+      $('#today').html( moment().format("dddd, MMMM Do") );
+      App.task_manager.show_todolists();
+    });
 
     $('.add-list-btn').click(function(){
       App.task_manager.add_list_item(this);
@@ -56,20 +62,22 @@ App.task_manager = {
 
   // init base todolist when no datas are saved
   init_todolists: function() {
-    return [{
+    return {
+      last_updater: App.tab_id,
+      lists: [{
       id: this.generate_random_id(),
       title: 'What I have To Do',
       items: [{
         id: this.generate_random_id(),
         value: 'Do a list of things to do...'
       }]
-    }];
+    }]};
   },
 
   // show saved or initialized todolists
   show_todolists: function() {
     var self = this;
-    App.todolists.forEach(function(list) {
+    App.todolists.lists.forEach(function(list) {
       var html_list = self.create_list_item(list.title, list.id);
       $(html_list).insertBefore($('.add-list-btn').first());
       self.init_list_interaction(html_list);
@@ -93,8 +101,7 @@ App.task_manager = {
   ///
 
   save_todolists: function() {
-    // TODO
-    // set tab id into todolists
+    App.todolists.last_updater = App.tab_id;
     chrome.storage.local.set({'todolists': App.todolists});
   },
 
@@ -115,7 +122,7 @@ App.task_manager = {
     var id = this.get_item_id(item);
     var value = item.closest('.item').find('.text-task').val();
     var list_id = this.get_item_id(item.closest('.list'));
-    var items = _.filter(App.todolists, {id: list_id})[0].items
+    var items = _.filter(App.todolists.lists, {id: list_id})[0].items
 
     if ( _.some(items, {id: id}) ){
       _.filter(items, {id: id} )[0].value = value;
@@ -126,7 +133,7 @@ App.task_manager = {
     var id = this.get_item_id(ckbitem);
     var text_item = ckbitem.closest('.item').find('.text-task');
     var list_id = this.get_item_id(ckbitem.closest('.list'));
-    var items = _.filter(App.todolists, {id: list_id})[0].items
+    var items = _.filter(App.todolists.lists, {id: list_id})[0].items
     var deleted_item = _.filter(items, {id: id})[0]
 
     if (deleted_item.deleted_at) {
@@ -156,7 +163,7 @@ App.task_manager = {
     var value = item.val();
     var list_id = this.get_item_id(item.closest('.list'));
 
-    _.filter(App.todolists, {id: list_id})[0].items.push({id: id, value: value, created_at: moment().format()})
+    _.filter(App.todolists.lists, {id: list_id})[0].items.push({id: id, value: value, created_at: moment().format()})
   },
 
   add_todo_item: function(btn) {
@@ -221,14 +228,14 @@ App.task_manager = {
     var id = this.get_item_id(list);
     var title = list.val();
 
-    App.todolists.push({id: id, title: title, items: []})
+    App.todolists.lists.push({id: id, title: title, items: []})
   },
 
   save_list_title: function(list) {
     var id = this.get_item_id(list);
     var title = list.val();
 
-    _.filter(App.todolists, {id: id})[0].title = title;
+    _.filter(App.todolists.lists, {id: id})[0].title = title;
   },
 
   add_list_item: function(btn) {
