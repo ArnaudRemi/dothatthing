@@ -170,12 +170,14 @@ input {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background-color: #F1F1F1;
+  background-color: #FFFFFF;
   margin-right: 10px;
+  cursor: pointer;
+  transition: all .3s ease;
 }
 
 .delete-btn:hover {
-  background-color: #C4C4C4;
+  background-color: #F1F1F1;
 }
 
 .archive-btn {
@@ -183,6 +185,9 @@ input {
 }
 
 .icon-delete {
-  transform-origin: 50% 50% 0px;
+  position: relative;
+  display: block;
+  margin: auto;
+  top: 8px;
 }
 

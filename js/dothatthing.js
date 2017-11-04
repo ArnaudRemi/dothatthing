@@ -268,11 +268,11 @@ App.task_manager = {
     });
 
     new_list.find('.parent-settings').mouseenter(function(){
-      new_list.find('.list-settings').fadeIn({duration: 100})
+      new_list.find('.list-settings').fadeIn({duration: 300})
     })
 
     new_list.find('.parent-settings').mouseleave(function(){
-      new_list.find('.list-settings').fadeOut({duration: 100})
+      new_list.find('.list-settings').fadeOut({duration: 300})
     })
 
     new_list.find('.delete-btn').click(function(){
