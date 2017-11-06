@@ -105,7 +105,10 @@ input {
 
 .add-list-btn {
   float: left;
-  color: white;
+  font-size: 20px;
+  color: #595E63;
+  opacity: 0.5;
+  margin-bottom: 72px;
 }
 
 .add-list-btn:hover {

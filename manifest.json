@@ -1,20 +1,20 @@
 {
-  "manifest_version": 2,
   "name": "Do That Thing",
-  // "short_name":"dothatthing",
-  // "description": "Just a todo list.",
-  "version": "0.0.1",
+  "short_name":"dothatthing",
+  "description": "The todo designed to be done.",
+  "version": "1.0",
+  "manifest_version": 2,
+
+  "icons": { "16": "icon16.png",
+             "48": "icon48.png",
+            "128": "icon128.png" },
 
   "chrome_url_overrides": {
-    "newtab": "dothatthing.html"
-  },
+    "newtab": "dothatthing.html" },
+
+  "app": { "urls": [ "http://www.dothatthing.co/" ] },
 
   "permissions": [
     "storage"
   ]
-
-  // "web_accessible_resources": [
-  //   "imgs/Logo/*.png",
-  //   "imgs/Logo/*.gif"
-  // ]
 }
