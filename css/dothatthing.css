@@ -76,7 +76,7 @@ input {
 }
 
 .text-task {
-  width: 600px;
+  min-width: 10px;
   margin-left: 15px;
   background: transparent;
   border: none;
@@ -192,5 +192,13 @@ input {
   display: block;
   margin: auto;
   top: 8px;
+}
+
+#hide{
+  display:none;
+  font-weight: 600;
+  font-size: 15.5px;
+  line-height: 22px;
+  letter-spacing: 0.5px;
 }
 

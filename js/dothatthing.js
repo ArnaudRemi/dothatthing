@@ -201,6 +201,12 @@ App.task_manager = {
   init_item_interation: function(new_item) {
     var self = this;
 
+    $(new_item).find('.text-task').keypress(function() {
+        var my_id = self.get_item_id(this);
+        $('#hide').text($(this).val());
+        $(this).width($('#hide').width());
+    });
+
     $(new_item).find('.text-task').change(function (){
       self.save_item_value($(this));
       self.save_todolists();
@@ -223,7 +229,7 @@ App.task_manager = {
             '</g>' +
           '</svg>' +
           '</label>' +
-        '<input class="text-task" type="text" id="todo-item-text-' + id + '" value="' + value + '" placeholder="Add a task">' +
+        '<span id="hide"></span><input class="text-task" type="text" id="todo-item-text-' + id + '" value="' + value + '" placeholder="Add a task">' +
       '</div>');
   },
 
