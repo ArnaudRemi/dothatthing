@@ -10,9 +10,8 @@
             "128": "icon128.png" },
 
   "chrome_url_overrides": {
-    "newtab": "dothatthing.html" },
-
-  "app": { "urls": [ "http://www.dothatthing.co/" ] },
+    "newtab": "dothatthing.html" 
+  },
 
   "permissions": [
     "storage"

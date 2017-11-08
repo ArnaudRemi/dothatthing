@@ -141,14 +141,24 @@ input {
 
 /*LIST*/
 
+.parent-settings {
+  display: inline-block;
+}
+
 .title {
-  width: 100%;
+  /*width: 100%;*/
   margin-bottom: 22px;
   font-size: 20px;
   background: transparent;
   border: none;
   line-height: 27px;
   color: #595E63;
+}
+
+#hide2{
+  display:none;
+  font-size: 20px;
+  line-height: 27px;
 }
 
 .title:focus {

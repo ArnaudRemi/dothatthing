@@ -201,10 +201,12 @@ App.task_manager = {
   init_item_interation: function(new_item) {
     var self = this;
 
+    $('#hide').text($(new_item).find('.text-task').val());
+    $(new_item).find('.text-task').width($('#hide').width() + 20);
     // Auto-width inputs
-    $(new_item).find('.text-task').keypress(function() {
+    $(new_item).find('.text-task').keyup(function() {
         $('#hide').text($(this).val());
-        $(this).width($('#hide').width());
+        $(this).width($('#hide').width() + 20);
     });
 
     $(new_item).find('.text-task').change(function (){
@@ -229,7 +231,7 @@ App.task_manager = {
             '</g>' +
           '</svg>' +
           '</label>' +
-        '<span id="hide"></span><input class="text-task" type="text" id="todo-item-text-' + id + '" value="' + value + '" placeholder="Add a task">' +
+        '<input class="text-task" type="text" id="todo-item-text-' + id + '" value="' + value + '" placeholder="Add a task">' +
       '</div>');
   },
 
@@ -264,6 +266,15 @@ App.task_manager = {
 
   init_list_interaction: function(new_list) {
     var self = this;
+
+    $('#hide2').text($(new_list).find('.title').val());
+    $(new_list).find('.title').width($('#hide2').width() + 20);
+    // Auto-width inputs
+    $(new_list).find('.title').keyup(function() {
+        $('#hide2').text($(this).val());
+        $(this).width($('#hide2').width() + 20);
+    });
+
     $(new_list).find('.title').change(function (){
       self.save_list_title($(this));
       self.save_todolists();
@@ -292,16 +303,12 @@ App.task_manager = {
   delete_list: function(list) {
     var id = this.get_item_id(list)
     var deleted_list = _.filter(App.todolists.lists, {id: id})[0]
-    console.log(id)
-    console.log(deleted_list)
 
     if (deleted_list.deleted_at) {
       deleted_list.deleted_at = null;
-      console.log("FUUUUU")
     }
     else {
       deleted_list.deleted_at = moment().format();
-      console.log("DELETED")
     }
 
     list.hide()
