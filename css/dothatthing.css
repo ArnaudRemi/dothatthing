@@ -24,36 +24,15 @@ input {
   text-indent: 1px;
 }
 
+#center {
+}
+
 #today {
   margin-top: 72px;
   margin-bottom: 36px;
   font-size: 30px;
   line-height: 41px;
   -webkit-user-select: none; 
-}
-
-.title {
-  width: 100%;
-  margin-bottom: 22px;
-  font-size: 20px;
-  background: transparent;
-  border: none;
-  line-height: 27px;
-  color: #595E63;
-}
-
-.title:focus {
-  outline: none;
-}
-
-.add-item-btn {
-  display:inline-block;
-  cursor: pointer;
-  font-weight: 700;
-  color: #595E63;
-  opacity: 0.5;
-  margin-left: 40px;
-  cursor: text;
 }
 
 ::-webkit-input-placeholder {
@@ -68,6 +47,7 @@ input {
   text-shadow: 0 2px 5px rgba(0,0,0,0.20);
 }
 
+/*ITEM*/
 
 .item {
   margin-bottom: 12px;
@@ -103,25 +83,14 @@ input {
   opacity: 0.5;
 }
 
-.add-list-btn {
-  float: left;
-  font-size: 20px;
-  color: #595E63;
-  opacity: 0.5;
-  margin-bottom: 72px;
-}
-
-.add-list-btn:hover {
-  font-size: 20px;
-  color: #595E63;
-}
-
-#center {
-}
-
-.list {
-  position: relative;
-  margin-bottom: 36px;
+#hide{
+  display:none;
+  font-weight: 600;
+  font-size: 15.5px;
+  line-height: 22px;
+  letter-spacing: 0.5px;
+  white-space: pre;
+  text-indent: 1px;
 }
 
 .form-check-input {
@@ -153,11 +122,60 @@ input {
   background-color: #185AC8;
 }
 
-
 #spread-feature {
   margin-top: auto;
   margin-bottom: 50px;
 }
+
+/*ADD ITEM BUTTON*/
+
+.add-item-btn {
+  display:inline-block;
+  cursor: pointer;
+  font-weight: 700;
+  color: #595E63;
+  opacity: 0.5;
+  margin-left: 40px;
+  cursor: text;
+}
+
+/*LIST*/
+
+.title {
+  width: 100%;
+  margin-bottom: 22px;
+  font-size: 20px;
+  background: transparent;
+  border: none;
+  line-height: 27px;
+  color: #595E63;
+}
+
+.title:focus {
+  outline: none;
+}
+
+.list {
+  position: relative;
+  margin-bottom: 36px;
+}
+
+/*ADD LIST BUTTON*/
+
+.add-list-btn {
+  float: left;
+  font-size: 20px;
+  color: #595E63;
+  opacity: 0.5;
+  margin-bottom: 72px;
+}
+
+.add-list-btn:hover {
+  font-size: 20px;
+  color: #595E63;
+}
+
+/*LIST SETTINGS*/
 
 .list-settings {
   display: none;
@@ -192,13 +210,5 @@ input {
   display: block;
   margin: auto;
   top: 8px;
-}
-
-#hide{
-  display:none;
-  font-weight: 600;
-  font-size: 15.5px;
-  line-height: 22px;
-  letter-spacing: 0.5px;
 }
 
