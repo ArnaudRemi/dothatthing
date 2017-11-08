@@ -89,18 +89,18 @@ input {
   border-bottom: 1px solid rgba(255, 255, 255, 0);
 }
 
-.strikeout{
-  text-decoration: line-through;
-  opacity: 0.5;
-}
-
 .text-task:focus {
   outline: none;
   color: #28292A;
   border:0;
   outline: 0;
   border-bottom: 1px solid #D8D8D8;
-  transition: all 0.5s ease;
+  transition: border-bottom 0.5s ease;
+}
+
+.strikeout{
+  text-decoration: line-through;
+  opacity: 0.5;
 }
 
 .add-list-btn {

@@ -201,8 +201,8 @@ App.task_manager = {
   init_item_interation: function(new_item) {
     var self = this;
 
+    // Auto-width inputs
     $(new_item).find('.text-task').keypress(function() {
-        var my_id = self.get_item_id(this);
         $('#hide').text($(this).val());
         $(this).width($('#hide').width());
     });
