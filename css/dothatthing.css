@@ -32,7 +32,7 @@ input {
   margin-bottom: 36px;
   font-size: 30px;
   line-height: 41px;
-  -webkit-user-select: none; 
+  -webkit-user-select: none;
 }
 
 ::-webkit-input-placeholder {
@@ -41,7 +41,7 @@ input {
   letter-spacing: 0.5px;
 }
 
-::selection { 
+::selection {
   background: #F4F4F4;
   color: #292B2D;
   text-shadow: 0 2px 5px rgba(0,0,0,0.20);
@@ -141,8 +141,13 @@ input {
 
 /*LIST*/
 
+.list {
+  position: relative;
+  margin-bottom: 36px;
+}
+
 .parent-settings {
-  display: inline-block;
+  display: inline;
 }
 
 .title {
@@ -155,19 +160,14 @@ input {
   color: #595E63;
 }
 
-#hide2{
-  display:none;
-  font-size: 20px;
-  line-height: 27px;
-}
-
 .title:focus {
   outline: none;
 }
 
-.list {
-  position: relative;
-  margin-bottom: 36px;
+#hide2{
+  display:none;
+  font-size: 20px;
+  line-height: 27px;
 }
 
 /*ADD LIST BUTTON*/
@@ -221,4 +221,3 @@ input {
   margin: auto;
   top: 8px;
 }
-
