@@ -125,7 +125,7 @@ App.task_manager = {
 
   save_item_value: function(item) {
     var id = this.get_item_id(item);
-    var value = item.closest('.item').find('.text-task').val();
+    var value = item.closest('.item').find('.text-task').text();
     var list_id = this.get_item_id(item.closest('.list'));
     var items = _.filter(App.todolists.lists, {id: list_id})[0].items
 
@@ -201,15 +201,7 @@ App.task_manager = {
   init_item_interation: function(new_item) {
     var self = this;
 
-    $('#hide').text($(new_item).find('.text-task').val());
-    $(new_item).find('.text-task').width($('#hide').width() + 20);
-    // Auto-width inputs
-    $(new_item).find('.text-task').keyup(function() {
-        $('#hide').text($(this).val());
-        $(this).width($('#hide').width() + 20);
-    });
-
-    $(new_item).find('.text-task').change(function (){
+    $(new_item).find('.text-task').blur(function (){
       self.save_item_value($(this));
       self.save_todolists();
     });
@@ -222,17 +214,9 @@ App.task_manager = {
   },
 
   create_todo_item: function(value, id) {
-    return $('<div class="item">' +
-        '<input class="checkbox-task" type="checkbox" id="todo-item-' + id + '" value="option1">' +
-        '<label for="todo-item-' + id + '" class="label-task-ckb" id="todo-label-' + id + '">' +
-          '<svg class="svg-ckb" id="svg-ckb-' + id + '"  width="17px" height="17px" >' +
-            '<g transform="translate(-1.000000, -2.000000)">' +
-              '<path class="path-ckb" fill="none" stroke-linecap="round" stroke="white" stroke-width="2" class="path" d="M4,4.5 C4,4.5 8,2.5 9.5,3.5 C11,4.5 2.5962646,9.5962646 4,11 C5.4037354,12.4037354 13.4283027,7.64264214 14.5,8.5 C15.5716973,9.35735786 9,15 9,15"/>' +
-            '</g>' +
-          '</svg>' +
-          '</label>' +
-        '<input class="text-task" type="text" id="todo-item-text-' + id + '" value="' + value + '" placeholder="Add a task">' +
-      '</div>');
+    var template = document.getElementById('temp-list-item').innerHTML;
+    Mustache.parse(template);
+    return $( Mustache.render(template, {id: id, value: value}) );
   },
 
   ///
@@ -248,7 +232,7 @@ App.task_manager = {
 
   save_list_title: function(list) {
     var id = this.get_item_id(list);
-    var title = list.val();
+    var title = list.text();
 
     _.filter(App.todolists.lists, {id: id})[0].title = title;
   },
@@ -267,15 +251,7 @@ App.task_manager = {
   init_list_interaction: function(new_list) {
     var self = this;
 
-    $('#hide2').text($(new_list).find('.title').val());
-    $(new_list).find('.title').width($('#hide2').width() + 20);
-    // Auto-width inputs
-    $(new_list).find('.title').keyup(function() {
-        $('#hide2').text($(this).val());
-        $(this).width($('#hide2').width() + 20);
-    });
-
-    $(new_list).find('.title').change(function (){
+    $(new_list).find('.title').blur(function (){
       self.save_list_title($(this));
       self.save_todolists();
     });
@@ -293,10 +269,10 @@ App.task_manager = {
     })
 
     new_list.find('.delete-btn').click(function(){
-     if (confirm('Are you sure you want to delete this list?')) {
+      if (confirm('Are you sure you want to delete this list?')) {
         self.delete_list(new_list)
         self.save_todolists()
-     }
+      }
     })
   },
 
@@ -315,24 +291,9 @@ App.task_manager = {
   },
 
   create_list: function(title, id) {
-    return $('<div class="list" id="todo-list-' + id + '">' +
-                 '<div class="parent-settings">' +
-                     '<div class="list-settings" id="list-settings-' + id + '">' +
-                        '<div class="setting-btn delete-btn">' +
-                        '<svg class="icon-delete" width="14px" height="14px">' +
-                          '<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">' +
-                          '<g id="Artboard-3" fill-rule="nonzero" fill="#444444"">' +
-                          '<path d="M14,1.75 L9.625,1.75 L8.75,0 L5.25,0 L4.375,1.75 L0,1.75 L0,4.375 L0.9625,4.375 L1.75,13.2125 C1.75,13.65 2.1875,14 2.625,14 L11.375,14 C11.8125,14 12.1625,13.65 12.25,13.2125 L13.0375,4.375 L14,4.375 L14,1.75 Z M10.5875,12.25 L3.4125,12.25 L2.7125,4.375 L11.2875,4.375 L10.5875,12.25 Z"></path>' +
-                          '</g>' +
-                          '</g>' +
-                        '</svg>' +
-                        '</div>' +
-                        '<div class="setting-btn archive-btn"></div>' +
-                      '</div>' +
-                      '<input class="title" type="text" id="todo-list-text-' + id + '" value="' + title + '" placeholder="Add a list">' +
-                    '</div>' +
-                 '<div class="add-item-btn" id="todo-list-btn-' + id + '">Add a task</div>' +
-             '</div>');
+    var template = document.getElementById('temp-list').innerHTML;
+    Mustache.parse(template);
+    return $( Mustache.render(template, {id: id, title: title}) );
   }
 
 }

@@ -69,6 +69,18 @@ input {
   border-bottom: 1px solid rgba(255, 255, 255, 0);
 }
 
+.text-task.placeholder-task[contenteditable] {
+    display: inline-block;
+}
+.text-task.placeholder-task[contenteditable]:empty::before {
+    content: 'Empty task';
+    display: inline-block;
+    opacity: 0.5;
+}
+.text-task.placeholder-task[contenteditable]:empty:focus::before {
+    content: 'Type something';
+}
+
 .text-task:focus {
   outline: none;
   color: #28292A;
@@ -158,6 +170,18 @@ input {
   border: none;
   line-height: 27px;
   color: #595E63;
+}
+
+.title.placeholder-task[contenteditable] {
+    display: inline-block;
+}
+.title.placeholder-task[contenteditable]:empty::before {
+    content: 'Empty Title';
+    display: inline-block;
+    opacity: 0.5;
+}
+.title.placeholder-task[contenteditable]:empty:focus::before {
+    content: 'Type something';
 }
 
 .title:focus {

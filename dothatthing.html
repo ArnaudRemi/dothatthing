@@ -12,6 +12,7 @@
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/lodash.js"></script>
     <script src="js/moment.js"></script>
+    <script src="js/mustache.js"></script>
 
     <script src="node_modules/vivus/src/vivus.js"></script>
     <script src="node_modules/vivus/src/pathformer.js"></script>
@@ -26,20 +27,28 @@
   <div id="center">
     <div id="today"></div>
     
-    <!-- <div class="list">
-      <input class="title" type="text" id="todo-list-text-id" value="This is what I have to do" placeholder="Add a list">
+    <!-- 
+    <div class="container">
+      <div class="list">
+        <input class="title" type="text" id="todo-list-text-id" value="This is what I have to do" placeholder="Add a list">
 
-      <div class="item">
-        <input class="checkbox-task" type="checkbox" id="todo-1" value="option1"> 
-        <input class="text-task" type="text" id="text-task-1" value="Créer une tache">
-      </div>
-      <div class="item">
-        <input class="checkbox-task" type="checkbox" id="todo-2" value="option1">
-        <input class="text-task" type="text" id="text-task-1" value="Terminer un tache">
-      </div>
+        <div class="item">
+          <input class="checkbox-task" type="checkbox" id="todo-1" value="option1"> 
+          <input class="text-task" type="text" id="text-task-1" value="Créer une tache">
+        </div>
+        <div class="item">
+          <input class="checkbox-task" type="checkbox" id="todo-2" value="option1">
+          <input class="text-task" type="text" id="text-task-1" value="Terminer un tache">
+        </div>
 
-      <div class="add-item-btn"><span class="add-icon">+</span> Add a task</div>
-    </div> -->
+        <div class="add-item-btn"><span class="add-icon">+</span> Add a task</div>
+      </div> 
+
+      <div class="archive-section">
+
+      </div>
+    </div>
+    -->
 
     <div class="add-list-btn">
       Add List
@@ -71,8 +80,46 @@
 
   -->
 
-  <span id="hide"></span>
-  <span id="hide2"></span>
+  <!-- TEMPLATES -->
+  <script id="temp-list" type="x-tmpl-mustache">
+    <div class="container-{{ id }}" class="container"
+      <div class="list" id="todo-list-{{ id }}">
+        <div class="parent-settings">
+          <div class="list-settings" id="list-settings-{{ id }}">
+            <div class="setting-btn delete-btn">
+              <svg class="icon-delete" width="14px" height="14px">
+                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="Artboard-3" fill-rule="nonzero" fill="#444444"">
+                <path d="M14,1.75 L9.625,1.75 L8.75,0 L5.25,0 L4.375,1.75 L0,1.75 L0,4.375 L0.9625,4.375 L1.75,13.2125 C1.75,13.65 2.1875,14 2.625,14 L11.375,14 C11.8125,14 12.1625,13.65 12.25,13.2125 L13.0375,4.375 L14,4.375 L14,1.75 Z M10.5875,12.25 L3.4125,12.25 L2.7125,4.375 L11.2875,4.375 L10.5875,12.25 Z"></path>
+                </g>
+                </g>
+              </svg>
+            </div>
+            <div class="setting-btn archive-btn"></div>
+          </div>
+          <span type="text" class="title-list placeholder-list" id="todo-list-text-{{ id }}"  contenteditable="true">{{ title }}</span>
+        </div>
+        <div class="add-item-btn" id="todo-list-btn-{{ id }}">Add a task</div>
+      </div>
+
+      <div class="archive-section" id="archive-section-{{id}}>
+      </div>
+    </div>
+  </script>
+
+  <script id="temp-list-item" type="x-tmpl-mustache">
+    <div class="item">
+        <input class="checkbox-task" type="checkbox" id="todo-item-{{ id }}" value="option1">
+        <label for="todo-item-{{ id }}" class="label-task-ckb" id="todo-label-{{ id }}">
+          <svg class="svg-ckb" id="svg-ckb-{{ id }}"  width="17px" height="17px" >
+            <g transform="translate(-1.000000, -2.000000)">
+              <path class="path-ckb" fill="none" stroke-linecap="round" stroke="white" stroke-width="2" class="path" d="M4,4.5 C4,4.5 8,2.5 9.5,3.5 C11,4.5 2.5962646,9.5962646 4,11 C5.4037354,12.4037354 13.4283027,7.64264214 14.5,8.5 C15.5716973,9.35735786 9,15 9,15"/>
+            </g>
+          </svg>
+          </label>
+        <span type="text" class="text-task placeholder-task" id="todo-item-text-{{ id }}"  contenteditable="true">{{ value }}</span>
+      </div>'
+  </script>
     
   </body>
 </html>
