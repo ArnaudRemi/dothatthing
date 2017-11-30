@@ -2,7 +2,7 @@
 /// Import
 ///
 
-var App = App || {}
+var App = {}
 
 /// EXAMPLE
 /// App.todolists = {
