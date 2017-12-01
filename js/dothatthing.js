@@ -66,13 +66,18 @@ App.task_manager = {
       last_updater: App.tab_id,
       lists: [{
       id: this.generate_random_id(),
-      title: 'What I have To Do',
+      title: 'My first todo list',
       items: [{
         id: this.generate_random_id(),
-        value: 'Do a list of things to do...'
+        value: 'Create a new task'
       }]
     }]};
   },
+
+  // list of onboarding tasks
+  // 1 - Create a new task
+  // 2 - Mark the first task as Done
+  // 3 - Edit list title
 
   // show saved or initialized todolists
   show_todolists: function() {

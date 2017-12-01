@@ -23,17 +23,17 @@
   </head>
   <body>
 
-  
-  <div id="center">
-    <div id="today"></div>
-    
-    <!-- 
+
+  <div class="container">
+    <div class="page-title" id="today"></div>
+
+    <!--
     <div class="container">
       <div class="list">
         <input class="title" type="text" id="todo-list-text-id" value="This is what I have to do" placeholder="Add a list">
 
         <div class="item">
-          <input class="checkbox-task" type="checkbox" id="todo-1" value="option1"> 
+          <input class="checkbox-task" type="checkbox" id="todo-1" value="option1">
           <input class="text-task" type="text" id="text-task-1" value="Créer une tache">
         </div>
         <div class="item">
@@ -42,7 +42,7 @@
         </div>
 
         <div class="add-item-btn"><span class="add-icon">+</span> Add a task</div>
-      </div> 
+      </div>
 
       <div class="archive-section">
 
@@ -60,18 +60,18 @@
  <!--  <div id="spread-feature">
     Send 3 mails
   </div> -->
-  
+
   <!--
-    TODO: 
+    TODO:
     - Date du jour
-  
+
     - créer une tache
     - Créer une liste de tache (qui contient des taches)
 
     - stocker les taches dans un coockie
 
     - Coche une tache: barrée puis disparée
-  
+
     - Popup en bas: partage à trois personne pour faire disparaitre
       - modal 3 email
       - envoi d'email (back?)
@@ -82,14 +82,14 @@
 
   <!-- TEMPLATES -->
   <script id="temp-list" type="x-tmpl-mustache">
-    <div class="container-{{ id }}" class="container">
+    <div class="list-container" id="list-container-{{ id }}">
       <div class="list" id="todo-list-{{ id }}">
         <div class="parent-settings">
           <div class="list-settings" id="list-settings-{{ id }}">
             <div class="setting-btn delete-btn">
               <svg class="icon-delete" width="14px" height="14px">
                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                <g id="Artboard-3" fill-rule="nonzero" fill="#444444"">
+                <g id="Artboard-3" fill-rule="nonzero" fill="#444444">
                 <path d="M14,1.75 L9.625,1.75 L8.75,0 L5.25,0 L4.375,1.75 L0,1.75 L0,4.375 L0.9625,4.375 L1.75,13.2125 C1.75,13.65 2.1875,14 2.625,14 L11.375,14 C11.8125,14 12.1625,13.65 12.25,13.2125 L13.0375,4.375 L14,4.375 L14,1.75 Z M10.5875,12.25 L3.4125,12.25 L2.7125,4.375 L11.2875,4.375 L10.5875,12.25 Z"></path>
                 </g>
                 </g>
@@ -102,7 +102,7 @@
         <div class="add-item-btn" id="todo-list-btn-{{ id }}">Add a task</div>
       </div>
 
-      <div class="archive-section" id="archive-section-{{id}}>
+      <div class="archive-section" id="archive-section-{{id}}">
       </div>
     </div>
   </script>
@@ -116,10 +116,10 @@
               <path class="path-ckb" fill="none" stroke-linecap="round" stroke="white" stroke-width="2" class="path" d="M4,4.5 C4,4.5 8,2.5 9.5,3.5 C11,4.5 2.5962646,9.5962646 4,11 C5.4037354,12.4037354 13.4283027,7.64264214 14.5,8.5 C15.5716973,9.35735786 9,15 9,15"/>
             </g>
           </svg>
-          </label>
+        </label>
         <span type="text" class="text-task placeholder-task" id="todo-item-text-{{ id }}"  contenteditable="true">{{ value }}</span>
-      </div>'
+    </div>
   </script>
-    
+
   </body>
 </html>
