@@ -50,7 +50,7 @@ App.task_manager = {
                     '<div class="add-list-btn">' +
                       'Add List'+
                     '</div>';
-      $('#center').html(reinit);
+      $('.container').html(reinit);
       $('#today').html( moment().format("dddd, MMMM Do") );
       App.task_manager.show_todolists();
     });
@@ -67,17 +67,13 @@ App.task_manager = {
       lists: [{
       id: this.generate_random_id(),
       title: 'My first todo list',
-      items: [{
-        id: this.generate_random_id(),
-        value: 'Create a new task'
-      }]
+      items: [
+        {id: this.generate_random_id(), value: 'Create a new task'},
+        {id: this.generate_random_id(), value: 'Mark the first task as done'},
+        {id: this.generate_random_id(), value: 'Edit list title'}
+      ]
     }]};
   },
-
-  // list of onboarding tasks
-  // 1 - Create a new task
-  // 2 - Mark the first task as Done
-  // 3 - Edit list title
 
   // show saved or initialized todolists
   show_todolists: function() {
@@ -206,7 +202,13 @@ App.task_manager = {
   init_item_interation: function(new_item) {
     var self = this;
 
+    // Delete item if empty
     $(new_item).find('.text-task').blur(function (){
+
+      if ($(new_item).find('.text-task').text() == '') {
+        self.delete_item($(this));
+        self.save_todolists();
+      }
       self.save_item_value($(this));
       self.save_todolists();
     });

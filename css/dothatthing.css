@@ -276,13 +276,12 @@ span.placeholder-list[contenteditable]:empty:focus::before {
 /*ADD ITEM BUTTON*/
 
 .add-item-btn {
-  display:inline-block;
   cursor: pointer;
   font-family: 'open_sanssemibold';
   color: #595E63;
   opacity: 0.5;
   margin-left: 36px;
-line-height: 22px;
+  line-height: 22px;
   cursor: text;
 }
 
