@@ -249,7 +249,7 @@ App.task_manager = {
     var id = self.generate_random_id();
     var new_list = App.task_manager.create_list('New List', id);
     new_list.insertBefore($(btn));
-    self.push_new_list($(new_list).find('.title'));
+    self.push_new_list($(new_list).find('.title-list'));
     self.save_todolists();
 
     self.init_list_interaction(new_list);
@@ -258,7 +258,7 @@ App.task_manager = {
   init_list_interaction: function(new_list) {
     var self = this;
 
-    $(new_list).find('.title').blur(function (){
+    $(new_list).find('.title-list').blur(function (){
       self.save_list_title($(this));
       self.save_todolists();
     });

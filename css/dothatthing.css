@@ -339,11 +339,10 @@ span.placeholder-list[contenteditable]:empty:focus::before {
 /*ADD LIST BUTTON*/
 
 .add-list-btn {
-  /*float: left;*/
   font-size: 20px;
   color: #595E63;
   opacity: 0.5;
-  margin-left: 110px;
+  margin-left: 35px;
 }
 
 .add-list-btn:hover {
@@ -363,6 +362,9 @@ span.placeholder-list[contenteditable]:empty:focus::before {
   .archive-section {
     margin: 0 -110px;
     padding: 24px 110px 72px 110px;
+  }
+  .add-list-btn {
+    margin-left: 0;
   }
 }
 

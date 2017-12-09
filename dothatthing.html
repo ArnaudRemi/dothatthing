@@ -97,7 +97,7 @@
             </div>
             <div class="setting-btn archive-btn"></div>
           </div>
-          <span type="text" class="title-list placeholder-list" id="todo-list-text-{{ id }}"  contenteditable="true">{{ title }}</span>
+          <span type="text" class="title-list placeholder-list" id="todo-list-text-{{ id }}" contenteditable="true">{{ title }}</span>
         </div>
         <div class="add-item-btn" id="todo-list-btn-{{ id }}">Add a task</div>
       </div>
@@ -109,15 +109,15 @@
 
   <script id="temp-list-item" type="x-tmpl-mustache">
     <div class="item">
-        <input class="checkbox-task" type="checkbox" id="todo-item-{{ id }}" value="option1">
-        <label for="todo-item-{{ id }}" class="label-task-ckb" id="todo-label-{{ id }}">
-          <svg class="svg-ckb" id="svg-ckb-{{ id }}"  width="17px" height="17px" >
-            <g transform="translate(-1.000000, -2.000000)">
-              <path class="path-ckb" fill="none" stroke-linecap="round" stroke="white" stroke-width="2" class="path" d="M4,4.5 C4,4.5 8,2.5 9.5,3.5 C11,4.5 2.5962646,9.5962646 4,11 C5.4037354,12.4037354 13.4283027,7.64264214 14.5,8.5 C15.5716973,9.35735786 9,15 9,15"/>
-            </g>
-          </svg>
-        </label>
-        <span type="text" class="text-task placeholder-task" id="todo-item-text-{{ id }}"  contenteditable="true">{{ value }}</span>
+      <input class="checkbox-task" type="checkbox" id="todo-item-{{ id }}" value="option1">
+      <label for="todo-item-{{ id }}" class="label-task-ckb" id="todo-label-{{ id }}">
+        <svg class="svg-ckb" id="svg-ckb-{{ id }}"  width="17px" height="17px" >
+          <g transform="translate(-1.000000, -2.000000)">
+            <path class="path-ckb" fill="none" stroke-linecap="round" stroke="white" stroke-width="2" class="path" d="M4,4.5 C4,4.5 8,2.5 9.5,3.5 C11,4.5 2.5962646,9.5962646 4,11 C5.4037354,12.4037354 13.4283027,7.64264214 14.5,8.5 C15.5716973,9.35735786 9,15 9,15"/>
+          </g>
+        </svg>
+      </label>
+      <span type="text" class="text-task placeholder-task" id="todo-item-text-{{ id }}" contenteditable="true" spellcheck="false">{{ value }}</span>
     </div>
   </script>
 
