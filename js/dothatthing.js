@@ -24,6 +24,17 @@ var App = {}
 ///   ]
 /// }
 
+
+///
+/// STATES
+///
+
+App.states.is_creating = false;
+
+///
+/// TASK MANAGER
+///
+
 App.task_manager = {
   init: function() {
     var self = this;
@@ -152,16 +163,6 @@ App.task_manager = {
       text_item.addClass('strikeout');
       text_item.prop('disabled', true);
     }
-
-    // if (_.some(items, {id: id})) {
-    //   _.remove( items, {id: id} );
-    //   text_item.addClass('strikeout');
-    //   text_item.prop('disabled', true);
-    // }
-    // else {
-    //   items.push({id: id, value: text_item.val()});
-    //   text_item.removeClass('strikeout');
-    //   text_item.prop('disabled', false);
   },
 
   push_new_item: function(item) {
@@ -172,11 +173,11 @@ App.task_manager = {
     _.filter(App.todolists.lists, {id: list_id})[0].items.push({id: id, value: value, created_at: moment().format()})
   },
 
-  add_todo_item: function(btn) {
+  add_todo_item: function(list_id) {
     var self = this;
     var id = self.generate_random_id();
     var new_item = App.task_manager.create_todo_item('', id);
-    new_item.insertBefore($(btn));
+    new_item.insertBefore($('#todo-list-btn-' + list_id));
     self.push_new_item($(new_item).find('.text-task'));
     self.save_todolists();
 
@@ -264,7 +265,7 @@ App.task_manager = {
     });
 
     new_list.find('.add-item-btn').click(function(){
-      App.task_manager.add_todo_item(this);
+      App.task_manager.add_todo_item(self.get_item_id(this));
     });
 
     new_list.find('.parent-settings').mouseenter(function(){
