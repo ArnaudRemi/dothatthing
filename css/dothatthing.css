@@ -283,6 +283,7 @@ span.placeholder-list[contenteditable]:empty:focus::before {
   margin-left: 36px;
   line-height: 22px;
   cursor: text;
+  padding-bottom: 5px;
 }
 
 /*LIST*/

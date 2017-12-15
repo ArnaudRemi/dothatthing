@@ -1,10 +1,5 @@
-///
-/// Import
-///
 
-var App = {}
-
-/// EXAMPLE
+/// EXAMPLE DATA
 /// App.todolists = {
 ///   last_updater: 'tabid',
 ///   lists: [
@@ -15,6 +10,7 @@ var App = {}
 ///       items: [{
 ///         id: 'autogenerateitemid',
 ///         value: 'One thing i have to do'
+///         is_new
 ///         deleted_at: "2017-10-25T13:36:50+02:00"  // (ISO 8601)
 ///         },
 ///         {...}
@@ -25,11 +21,8 @@ var App = {}
 /// }
 
 
-///
-/// STATES
-///
-
-App.states.is_creating = false;
+var App = {}
+App.new_item_id = 0
 
 ///
 /// TASK MANAGER
@@ -103,6 +96,10 @@ App.task_manager = {
       list.items.forEach(function(item) {
 
         if (item.deleted_at) {
+          return;
+        }
+        else if (item.value == '') {
+          item.deleted_at = moment().format();
           return;
         }
 
@@ -184,6 +181,8 @@ App.task_manager = {
     self.init_item_interation(new_item);
 
     $(new_item).find('.text-task').focus();
+
+    return id;
   },
 
   animate_custom_ckb: function(ckb) {
@@ -203,15 +202,36 @@ App.task_manager = {
   init_item_interation: function(new_item) {
     var self = this;
 
-    // Delete item if empty
     $(new_item).find('.text-task').blur(function (){
-
-      if ($(new_item).find('.text-task').text() == '') {
+      if ($(new_item).find('.text-task').text() == '' && App.new_item_id == self.get_item_id($(this))) {
         self.delete_item($(this));
-        self.save_todolists();
+        $(this).closest('.item').hide();
       }
       self.save_item_value($(this));
       self.save_todolists();
+      App.new_item_id = 0
+      $('#todo-list-btn-' + self.get_item_id($(this).closest('.list'))).show()
+    });
+
+    $(new_item).find('.text-task').keypress(function(e){
+      if(e.keyCode==13) {
+        if (App.new_item_id == self.get_item_id($(this))) {
+          // need to blur before refocus to avoid new_item_id being set to 0 by blur event when refocus
+          this.blur()
+          var list_id = self.get_item_id($(this).closest('.list'));
+          if ($(this).text().length > 0){
+            $('#todo-list-btn-' + list_id).hide()
+            App.new_item_id = self.add_todo_item(list_id);
+          }
+          else {
+            self.delete_item($(this));
+            $(this).closest('.item').hide();
+          }
+        }
+        else
+          this.blur();
+        return false;
+      }
     });
 
     $(new_item).find('.checkbox-task').change(function (){
@@ -265,7 +285,8 @@ App.task_manager = {
     });
 
     new_list.find('.add-item-btn').click(function(){
-      App.task_manager.add_todo_item(self.get_item_id(this));
+      App.new_item_id = App.task_manager.add_todo_item(self.get_item_id(this));
+      $(this).hide()
     });
 
     new_list.find('.parent-settings').mouseenter(function(){
