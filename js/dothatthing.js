@@ -23,6 +23,7 @@
 
 var App = {}
 App.new_item_id = 0
+App.new_list_id = 0
 
 ///
 /// TASK MANAGER
@@ -50,17 +51,19 @@ App.task_manager = {
         return;
 
       App.todolists = changes.todolists.newValue;
-      var reinit = '<div id="today"></div>' +
+      var reinit = '<div class="container">' +
+                    '<div class="page-title" id="today"></div>' +
                     '<div class="add-list-btn">' +
                       'Add List'+
-                    '</div>';
+                    '</div>'+
+                  '</div>';
       $('.container').html(reinit);
       $('#today').html( moment().format("dddd, MMMM Do") );
       App.task_manager.show_todolists();
     });
 
     $('.add-list-btn').click(function(){
-      App.task_manager.add_list_item(this);
+      App.new_list_id = App.task_manager.add_list_item(this);
     })
   },
 
@@ -214,7 +217,7 @@ App.task_manager = {
     });
 
     $(new_item).find('.text-task').keypress(function(e){
-      if(e.keyCode==13) {
+      if(e.keyCode == 13) {
         if (App.new_item_id == self.get_item_id($(this))) {
           // need to blur before refocus to avoid new_item_id being set to 0 by blur event when refocus
           this.blur()
@@ -276,14 +279,29 @@ App.task_manager = {
     self.init_list_interaction(new_list);
 
     $(new_list).find('.title-list').focus();
+
+    return id;
   },
 
   init_list_interaction: function(new_list) {
     var self = this;
 
-    $(new_list).find('.title-list').blur(function (){
+    $(new_list).find('.title-list').blur(function(){
+      App.new_list_id = 0;
       self.save_list_title($(this));
       self.save_todolists();
+    });
+
+    $(new_list).find('.title-list').keypress(function(e){
+      if (e.keyCode == 13) {
+        console.log(self.get_item_id(this))
+        console.log(App.new_list_id)        
+        if (App.new_list_id == self.get_item_id(this))
+          $(this).closest('.list').find('.add-item-btn').click();
+        else
+          $(this).blur()
+        return false;
+      }
     });
 
     new_list.find('.add-item-btn').click(function(){
